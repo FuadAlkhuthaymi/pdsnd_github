@@ -2,7 +2,7 @@ import time
 import pandas as pd
 import numpy as np
 
-CITY_DATA = { 'chicago': 'chicago.csv',
+city_data = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
@@ -19,12 +19,12 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         city= input( ' Write a city name: Chicago, New York City or Washington! : ').lower()
-        if city not in CITY_DATA:
+        if city not in city_data:
              print('\n Invild answer\n')
              continue
         else:
-             break 
-        
+             break
+
 
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
@@ -33,7 +33,7 @@ def get_filters():
              print('please pick the listed months or choose all')
              continue
         else:
-             break   
+             break
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
@@ -59,20 +59,20 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     df=pd.read_csv(CITY_DATA[city])
-                   
-    df['Start Time'] = pd.to_datetime(df['Start Time'])  
+
+    df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['month'] = df['Start Time'].dt.month
-    df['day_of_week'] = df['Start Time'].dt.weekday_name  
-                   
+    df['day_of_week'] = df['Start Time'].dt.weekday_name
+
     if month != 'all':
-        
+
         months = ['january', 'february', 'march', 'april', 'may', 'june']
-        month = months.index(month) + 1              
+        month = months.index(month) + 1
     if day != 'all':
-        
+
         df = df[df['day_of_week'] == day.title()]
-                   
-                   
+
+
     return df
 
 
@@ -85,17 +85,17 @@ def time_stats(df):
     # TO DO: display the most common month
     df['month']=df['Start Time'].dt.month
     common_month=df['month'].mode()[0]
-    print(f'the most common month is {common_month}')                                
+    print(f'the most common month is {common_month}')
 
     # TO DO: display the most common day of week
     df['day_of_week']=df['Start Time'].dt.weekday_name
-    common_day=df['day_of_week'].mode()[0]                                
+    common_day=df['day_of_week'].mode()[0]
     print(f'the most common day is : {common_day}')
     # TO DO: display the most common start hour
     df['hour']=df['Start Time'].dt.hour
     common_hour=df['hour'].mode()[0]
-    print(f'the most common hour is :{common_hour}')                               
-                                    
+    print(f'the most common hour is :{common_hour}')
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -150,7 +150,7 @@ def user_stats(df):
     # TO DO: Display counts of user types
     user_types = df['User Type'].value_counts()
     print(f'number of user type is {user_types}')
-    
+
     #f 'Gender' in df and 'Birth Year' in df:
         #rint(f"Genders  of user types {df['Gender'].value_counts()}")
     # TO DO: Display counts of gender
@@ -159,7 +159,7 @@ def user_stats(df):
         print(f'the gender is {gender}')
     else:
         print("There is no gender information in this city.")
-    
+
     # TO DO: Display earliest, most recent, and most common year of birth
     if 'Birth_Year' in df:
         earliest = int(df['Birth_Year'].min())
@@ -175,7 +175,7 @@ def user_stats(df):
     print('-'*40)
 
 def display_raw(df):
-   
+
     view_data = input('\nWould you like to view 5 rows of individual trip data? Enter yes or no\n')
     start_loc = 0
     view_display = False
@@ -187,8 +187,8 @@ def display_raw(df):
         view_data = input('Do you wish to continue? :  ').lower()
         if view_data =='yes':
            view_display = True
-        else:                  
-           view_display = False              
+        else:
+           view_display = False
 
 def main():
     while True:
