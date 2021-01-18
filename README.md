@@ -14,4 +14,5 @@ new_york_city.csv - Dataset containing all bikeshare information for the city of
 
 washington.csv - Dataset containing all bikeshare information for the city of Washington provided by Udacity. Note: This does not include the 'Gender' or 'Birth Year' data.
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+I am greatful of all of the Udacity team for guiding me and giving me
+this wonderful opportunity to learn and practice for this project
